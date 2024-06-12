@@ -5,9 +5,12 @@
     int y{ get; set; }
 
     public position(int x,int y)
-        { int X = x;
-          int Y=y; }
+        { 
+        int X = x;
+          int Y=y; 
+    }
 
 }
-
+    class player
+{ }
   
