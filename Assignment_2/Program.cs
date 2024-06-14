@@ -165,7 +165,7 @@ class Player
     {
         Grid[player.Position.Y,player.Position.X].Occupant = player.Name;
     }
-    Grid[Otherplayer.Position.Y, Otherplayer.Position.X].occupant = Otherplayer.Name;
+    Grid[OtherPlayer.Position.Y,OtherPlayer.Position.X].Occupant = OtherPlayer.Name;
 }
     public void CollectGem(Player player)
 {
@@ -196,7 +196,7 @@ class Game
 
     public void Start()
     {
-        while (!IsGameOver())
+        while (IsGameover())
         {
 
             Console.WriteLine($"Turn {TotalTurns + 1}: {CurrentTurn.Name}'s turn");
@@ -244,7 +244,7 @@ class Game
     private void AnnounceWinner()
     {
         Console.WriteLine("Game Over!");
-        if (Player1.GemCount>player2.Gemcount)
+        if (Player1.GemCount>Player2.GemCount)
         {
             Console.WriteLine(" player  wins!");
         }
@@ -265,7 +265,7 @@ class Program
     static void Main(string[] args)
     {
         Game game = new Game();
-        game.start();
+        game.Start();
     }
 }
   
