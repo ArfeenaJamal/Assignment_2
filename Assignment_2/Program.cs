@@ -75,8 +75,8 @@ class Player
             Grid[Size-1,Size-1].Occupant= "p2";
             for (int i = 0; i < 6; i++)
             {
-                int x = random.Next(0, Size);
-                int y = random.Next(0, Size);
+                int x = random.Next(0,Size);
+                int y = random.Next(0,Size);
                 if (Grid[x, y].Occupant == "-")
                 { 
                     Grid[x, y].Occupant = "G";
@@ -88,7 +88,7 @@ class Player
                 int y = random.Next(0,Size);
                 if (Grid[x,y].Occupant=="-")
                         { 
-                    Grid[x,y].Occupant == "0";
+                    Grid[x,y].Occupant = "0";
             }
             }
             }
@@ -98,7 +98,7 @@ class Player
         {
             for (int j = 0;j<Size; j++)
             {
-                Console.WriteLine(Grid[i, j].Occupant + "");
+                Console.Write(Grid[i, j].Occupant + "");
 
             }
             Console.WriteLine(); 
@@ -109,11 +109,11 @@ class Player
 
         
     }
-    public bool Isvalidmove (Player player char direction)
+    public bool IsValidMove(Player player,char direction)
        { 
-            int new X= player.Position.X;
-            int new Y= player.Position.Y;
-    }
+            int newX= player.Position.X;
+            int newY= player.Position.Y;
+    
     switch(direction)
         { 
                 case 'U':
@@ -135,42 +135,44 @@ class Player
        return false;
   }
 
-if(Grid[newY,newX].Occupant=="0')
-    { 
-       return false;
-}
-       return true;
+        if (Grid[newY, newX].Occupant == "0")
+            {
+            return false;
+
+        }
+        return true;
 
     }
 
-  public void UpdatePlayerPosition(Player player,Player Otherplayer)
+  public void UpdatePlayerPosition(Player player,Player OtherPlayer)
 {
     for (int i = 0; i < Size; i++)
     {
         for (int j = 0; j < Size; j++)
         {
-            if (Grid[i, j].Occupant == player.Name)
+            if (Grid[i,j].Occupant==player.Name) 
             {
                 Grid[i, j].Occupant = "-";
             }
         }
     }
-    if (Grid[player.Position.Y, player.Position.X].Occupant == "G")
+    if (Grid[player.Position.Y,player.Position.X].Occupant == "G")
     {
         player.GemCount++;
-        Grid[player.Position.Y, player.Position.X].Occupant = player.Name;
+        Grid[player.Position.Y,player.Position.X].Occupant = player.Name;
     }
     else
     {
-        Grid[player.Position.Y, player.Position.X].Occupant = player.Name;
+        Grid[player.Position.Y,player.Position.X].Occupant = player.Name;
     }
     Grid[Otherplayer.Position.Y, Otherplayer.Position.X].occupant = Otherplayer.Name;
 }
-public void CollectGem(Player player)
+    public void CollectGem(Player player)
 {
-    if (Grid[player.Position.Y, player.Position.X].Occupant == "G")
-        player.GetCount++;
-    Grid[player.Position.Y, player.Position.X].Occupant = "-";
+    if (Grid[player.Position.Y,player.Position.X].Occupant == "G")
+        { 
+        player.GemCount++;
+    Grid[player.Position.Y,player.Position.X].Occupant = "-";
 }
 }
 }
@@ -180,19 +182,19 @@ class Game
     private Board Board { get; set; }
     private Player Player1 { get; set; }
     private Player Player2 { get;set; }
-    private Player CurrentTurn { get;set; }
-    private int TotalTurn { get; set; }
+    private Player CurrentTurn{ get;set; }
+    private int TotalTurns{ get; set; }
 
     public Game()
     {
         Board = new Board();
-        Player1 = new Player("P1", new Position(0, 0));
-        Player2 = new Player("p2", new Position(5, 5));
+        Player1 = new Player("P1", new Position(0,0));
+        Player2 = new Player("p2", new Position(5,5));
         CurrentTurn = Player1;
         TotalTurns = 0;
     }
 
-    public void start()
+    public void Start()
     {
         while (!IsGameOver())
         {
@@ -213,7 +215,8 @@ class Game
             {
 
                 Console.WriteLine("Invalid move! Try again.");
-            }Board.UpdatePlayerPosition(CurrentTurn == Player1 ? Player2 : Player1, CurrentTurn);
+            }
+            Board.UpdatePlayerPosition(CurrentTurn == Player1 ? Player2 : Player1, CurrentTurn);
 
         }
 
