@@ -75,8 +75,8 @@ class Board
         Grid[Size - 1, Size - 1].Occupant = "p2";
         for (int i = 0; i < 6; i++)
         {
-            int x = random.Next(0, Size);
-            int y = random.Next(0, Size);
+            int x = random.Next(0,Size);
+            int y = random.Next(0,Size);
             if (Grid[x, y].Occupant == "-")
             {
                 Grid[x, y].Occupant = "G";
@@ -178,7 +178,7 @@ class Game
 
     public void Start()
     {
-        while (IsGameover())
+        while(!IsGameOver())
         {
 
             Console.WriteLine($"Turn {TotalTurns + 1}: {CurrentTurn.Name}'s turn");
@@ -190,8 +190,8 @@ class Game
             {
                 CurrentTurn.Move(direction);
                 Board.CollectGem(CurrentTurn);
-                SwitchTurn();
                 TotalTurns++;
+                SwitchTurn();
             }
             else
             {
@@ -218,7 +218,7 @@ class Game
         }
     }
 
-    private bool IsGameover()
+    private bool IsGameOver()
     {
         return TotalTurns >= 30;
     }
