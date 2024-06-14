@@ -50,93 +50,93 @@ class Player
 
         }
     }
-        class Board
+class Board
+{
+    private const int Size = 6;
+    private Cell[,] Grid { get; set; }
+    private Random random;
+
+    public Board()
+    {
+        Grid = new Cell[Size, Size];
+        random = new Random();
+        InitializeBoard();
+    }
+    private void InitializeBoard()
+    {
+        for (int i = 0; i < Size; i++)
         {
-            private const int Size = 6;
-            private Cell[,] Grid{ get; set; }
-            private Random random;
-        
-        public Board()
-        { 
-          Grid=new Cell[Size,Size];
-            random = new Random();
-            InitializeBoard();
+            for (int j = 0; j < Size; j++)
+            {
+                Grid[i, j] = new Cell("-");
+            }
         }
-         private void InitializeBoard ()
+        Grid[0, 0].Occupant = "p1";
+        Grid[Size - 1, Size - 1].Occupant = "p2";
+        for (int i = 0; i < 6; i++)
         {
-            for (int i = 0; i < Size; i++)
+            int x = random.Next(0, Size);
+            int y = random.Next(0, Size);
+            if (Grid[x, y].Occupant == "-")
             {
-                for (int j = 0; j < Size; j++)
-                {
-                    Grid[i,j] = new Cell("-");
-                }
-                }
-            Grid[0,0].Occupant = "p1";
-            Grid[Size-1,Size-1].Occupant= "p2";
-            for (int i = 0; i < 6; i++)
+                Grid[x, y].Occupant = "G";
+            }
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            int x = random.Next(0, Size);
+            int y = random.Next(0, Size);
+            if (Grid[x, y].Occupant == "-")
             {
-                int x = random.Next(0,Size);
-                int y = random.Next(0,Size);
-                if (Grid[x, y].Occupant == "-")
-                { 
-                    Grid[x, y].Occupant = "G";
-                }
+                Grid[x, y].Occupant = "0";
             }
-            for (int i=0;i<6;i++)
-            {  
-                int x = random.Next(0,Size);
-                int y = random.Next(0,Size);
-                if (Grid[x,y].Occupant=="-")
-                        { 
-                    Grid[x,y].Occupant = "0";
-            }
-            }
-            }
+        }
+    }
     public void Display()
     {
-        for(int i = 0;i<Size;i++)
+        for (int i = 0; i < Size; i++)
         {
-            for (int j = 0;j<Size; j++)
+            for (int j = 0; j < Size; j++)
             {
                 Console.Write(Grid[i, j].Occupant + "");
 
             }
-            Console.WriteLine(); 
-            
-           
+            Console.WriteLine();
+
+
         }
 
 
-        
+
     }
-    public bool IsValidMove(Player player,char direction)
-       { 
-            int newX= player.Position.X;
-            int newY= player.Position.Y;
-    
-    switch(direction)
-        { 
-                case 'U':
+    public bool IsValidMove(Player player, char direction)
+    {
+        int newX = player.Position.X;
+        int newY = player.Position.Y;
+
+        switch (direction)
+        {
+            case 'U':
                 newY--;
                 break;
-                case'D':
+            case 'D':
                 newY++;
                 break;
-                case'L':
+            case 'L':
                 newX--;
                 break;
-                case'R':
+            case 'R':
                 newX++;
                 break;
         }
 
- if(newX<0|| newX>= Size||newY<0||newY>= Size)
-  {  
-       return false;
-  }
+        if (newX < 0 || newX >= Size || newY < 0 || newY >= Size)
+        {
+            return false;
+        }
 
         if (Grid[newY, newX].Occupant == "0")
-            {
+        {
             return false;
 
         }
@@ -144,38 +144,20 @@ class Player
 
     }
 
-  public void UpdatePlayerPosition(Player player,Player OtherPlayer)
-{
-    for (int i = 0; i < Size; i++)
+
+    public void CollectGem(Player player)
     {
-        for (int j = 0; j < Size; j++)
+        if (Grid[player.Position.Y, player.Position.X].Occupant == "G")
         {
-            if (Grid[i,j].Occupant==player.Name) 
-            {
-                Grid[i, j].Occupant = "-";
-            }
+            player.GemCount++;
+            Grid[player.Position.Y, player.Position.X].Occupant = "-";
         }
     }
-    if (Grid[player.Position.Y,player.Position.X].Occupant == "G")
-    {
-        player.GemCount++;
-        Grid[player.Position.Y,player.Position.X].Occupant = player.Name;
-    }
-    else
-    {
-        Grid[player.Position.Y,player.Position.X].Occupant = player.Name;
-    }
-    Grid[OtherPlayer.Position.Y,OtherPlayer.Position.X].Occupant = OtherPlayer.Name;
+
+
+
 }
-    public void CollectGem(Player player)
-{
-    if (Grid[player.Position.Y,player.Position.X].Occupant == "G")
-        { 
-        player.GemCount++;
-    Grid[player.Position.Y,player.Position.X].Occupant = "-";
-}
-}
-}
+
 
 class Game
 { 
@@ -216,7 +198,7 @@ class Game
 
                 Console.WriteLine("Invalid move! Try again.");
             }
-            Board.UpdatePlayerPosition(CurrentTurn == Player1 ? Player2 : Player1, CurrentTurn);
+            
 
         }
 
