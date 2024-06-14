@@ -37,20 +37,20 @@ class Player
                 break;
             case 'R':
                 Position.X++ ;
-                break;
+                break; 
         }
     }
     class Cells
-    { public string Occurance{ get; set; }
-        public Cells(string occurance)
+    { public string Occupant{ get; set; }
+        public Cells(string occupant)
         {
-            Occurance = occurance;
+            Occupant= occupant;
 
         }
         class Board
         {
-            private const int size = 6;
-            private Cells[] Grid{ get; set; }
+            private const int Size = 6;
+            private Cells[,] Grid{ get; set; }
             private Random random;
         }
         public Board()
