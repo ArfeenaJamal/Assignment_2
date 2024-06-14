@@ -27,21 +27,23 @@ class Player
         switch (direction)
         {
             case 'U':
-                Position.Y-- ;
+                Position.Y--;
                 break;
             case 'D':
-               Position.Y++ ;
+                Position.Y++;
                 break;
             case 'L':
-                Position.X-- ;
+                Position.X--;
                 break;
             case 'R':
-                Position.X++ ;
-                break; 
+                Position.X++;
+                break;
         }
     }
+}
     class Cell
-    { public string Occupant { get; set; }
+    { 
+    public string Occupant { get; set; }
         public Cell(string occupant)
         {
             Occupant = occupant;
@@ -55,7 +57,8 @@ class Player
             private Random random;
         
         public Board()
-        { Grid = new Cells[Size,Size];
+        { 
+          Grid=new Cell[Size,Size];
             random = new Random();
             InitializeBoard();
         }
