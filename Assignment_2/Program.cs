@@ -54,27 +54,30 @@ class Player
             private Random random;
         }
         public Board()
-        { Grid = new Cells[Size, Size];
-            random = new Random;
+        { Grid = new Cells[Size,Size];
+            random = new Random();
             InitializeBoard();
         }
          private void InitializeBoard ()
         {
             for (int i = 0; i < Size; i++)
             {
-                for (int j = 0; j < sizeof; j++)
+                for (int j = 0; j < Size; j++)
                 {
-                    Grid[i, j] = new Cells("-");
+                    Grid[i,j] = new Cells("-");
                 }
                 }
-            Grid[0,0] Occurance = "p1";
-            Grid[size - 1, sizeo - 1] = "p2";
-            for (int i = 0;i<6;i++)
+            Grid[0,0].Occupant = "p1";
+            Grid[Size-1,Size-1].Occupant= "p2";
+            for (int i = 0; i < 6; i++)
             {
-                int x=random.Next(0,size);
-                int y = Random.Next(0,size);
-                if (Grid[x,y]Occurance=="-")
-                        { Grid[x, y].Occurance = "G"; }
+                int x = random.Next(0, size);
+                int y = random.Next(0, size);
+                if (Grid[x, y].Occupant == "-")
+                { 
+                    Grid[x, y].Occupant = "G";
+                }
+            }
             for (int i=0;i<6;i++)
             { int x = Random.Next(0, size);
                 int y = Random.Next(0, size);
