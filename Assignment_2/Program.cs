@@ -1,8 +1,8 @@
 ﻿using System;
 class Position
 {
-    int X{get;set; }
-    int Y{ get;set; }
+   public int X{get;set; }
+   public int Y{ get;set; }
 
     public Position(int x,int y)
         { 
@@ -40,19 +40,20 @@ class Player
                 break; 
         }
     }
-    class Cells
-    { public string Occupant{ get; set; }
-        public Cells(string occupant)
+    class Cell
+    { public string Occupant { get; set; }
+        public Cell(string occupant)
         {
-            Occupant= occupant;
+            Occupant = occupant;
 
         }
+    }
         class Board
         {
             private const int Size = 6;
-            private Cells[,] Grid{ get; set; }
+            private Cell[,] Grid{ get; set; }
             private Random random;
-        }
+        
         public Board()
         { Grid = new Cells[Size,Size];
             random = new Random();
@@ -64,7 +65,7 @@ class Player
             {
                 for (int j = 0; j < Size; j++)
                 {
-                    Grid[i,j] = new Cells("-");
+                    Grid[i,j] = new Cell("-");
                 }
                 }
             Grid[0,0].Occupant = "p1";
@@ -80,19 +81,19 @@ class Player
             }
             for (int i=0;i<6;i++)
             {  
-                int x = random.Next(0,size);
-                int y = random.Next(0,size);
+                int x = random.Next(0,Size);
+                int y = random.Next(0,Size);
                 if (Grid[x,y].Occupant=="-")
                         { 
-                    Grid[x,Y].Occupant == "0";
+                    Grid[x,y].Occupant == "0";
             }
             }
             }
     public void Display()
     {
-        for(int i = 0;i<Size ; i++)
+        for(int i = 0;i<Size;i++)
         {
-            for (int j = 0; j < Size; j++)
+            for (int j = 0;j<Size; j++)
             {
                 Console.WriteLine(Grid[i, j].Occupant + "");
 
@@ -128,24 +129,46 @@ class Player
 
  if(newX<0|| newX>= Size||newY<0||newY>= Size)
   {  
-    return false;
+       return false;
   }
 
 if(Grid[newY,newX].Occupant=="0')
     { 
-    return false;
+       return false;
 }
-return true;
+       return true;
 
     }
 
-  public void collectGem(Player player)
-{ 
-     if (Grid[player.Position.Y,player.Position.X].Occupant=="G")
-    { player.GemCount++;
-        Grid[player.Position.Y, player.Position.X].Occupant = "-";
+  public void UpdatePlayerPosition(Player player,Player Otherplayer)
+{
+    for (int i = 0; i < Size; i++)
+    {
+        for (int j = 0; j < Size; j++)
+        {
+            if (Grid[i, j].Occupant == player.Name)
+            {
+                Grid[i, j].Occupant = "-";
+            }
+        }
     }
-    
+    if (Grid[player.Position.Y, player.Position.X].Occupant == "G")
+    {
+        player.GemCount++;
+        Grid[player.Position.Y, player.Position.X].Occupant = player.Name;
+    }
+    else
+    {
+        Grid[player.Position.Y, player.Position.X].Occupant = player.Name;
+    }
+    Grid[Otherplayer.Position.Y, Otherplayer.Position.X].occupant = Otherplayer.Name;
+}
+public void CollectGem(Player player)
+{
+    if (Grid[player.Position.Y, player.Position.X].Occupant == "G")
+        player.GetCount++;
+    Grid[player.Position.Y, player.Position.X].Occupant = "-";
+}
 }
 }
 
@@ -180,15 +203,15 @@ class Game
             {
                 CurrentTurn.Move(direction);
                 Board.CollectGem(CurrentTurn);
-                TotalTurns++;
                 SwitchTurn();
-
+                TotalTurns++;
             }
             else
             {
 
                 Console.WriteLine("Invalid move! Try again.");
-            }
+            }Board.UpdatePlayerPosition(CurrentTurn == Player1 ? Player2 : Player1, CurrentTurn);
+
         }
 
         AnnounceWinner();
@@ -215,9 +238,9 @@ class Game
     private void AnnounceWinner()
     {
         Console.WriteLine("Game Over!");
-        if (Player1.GemCount < Player2.GemCount)
+        if (Player1.GemCount>player2.Gemcount)
         {
-            Console.WriteLine("{Player1 wins!");
+            Console.WriteLine(" player  wins!");
         }
         else if (Player1.GemCount < Player2.GemCount)
         {
