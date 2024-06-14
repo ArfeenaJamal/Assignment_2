@@ -1,42 +1,42 @@
 ﻿using System;
-class Place
+class Position
 {
     int X{get;set; }
     int Y{ get;set; }
 
-    public Place(int x,int y)
+    public Position(int x,int y)
         { 
-        int X = x;
-        int Y =y; 
+        X = x;
+        Y =y; 
     }
 
 }
-class Participants
+class Player
 {
     public string Name { get; set; }
-    public Place Place { get; set; }
-    public int Gemcount { get; set; }
-    public Participants(string name, Place place)
+    public Position Position { get; set; }
+    public int GemCount { get; set; }
+    public Player(string name, Position position)
     {
         Name = name;
-        Place = place;
-        Gemcount = 0;
+        Position = position;
+        GemCount = 0;
     }
-    public void changeplace(char direction)
+    public void Move(char direction)
     {
         switch (direction)
         {
             case 'U':
-                Place Y-- ;
+                Position.Y-- ;
                 break;
             case 'D':
-                Place Y++ ;
+               Position.Y++ ;
                 break;
             case 'L':
-                Place X-- ;
+                Position.X-- ;
                 break;
             case 'R':
-                Place X++ ;
+                Position.X++ ;
                 break;
         }
     }
