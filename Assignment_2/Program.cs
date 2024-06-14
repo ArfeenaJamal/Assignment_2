@@ -1,13 +1,14 @@
 ﻿using System;
-    class Place
+using System.Runtime.CompilerServices;
+class Place
 {
-    int x{ get; set; }
-    int y{ get; set; }
+    int X{get;set; }
+    int Y{ get;set; }
 
     public Place(int x,int y)
         { 
         int X = x;
-          int Y=y; 
+        int Y =y; 
     }
 
 }
@@ -27,20 +28,50 @@ class Participants
         switch (direction)
         {
             case 'U':
-                Place Y--;
+                Place Y-- ;
                 break;
             case 'D':
-                Place Y++;
+                Place Y++ ;
                 break;
             case 'L':
-                Place X--;
+                Place X-- ;
                 break;
             case 'R':
-                Place X++;
+                Place X++ ;
                 break;
         }
     }
+    class Cells
+    { public string Occurance{ get; set; }
+        public Cells(string occurance)
+        {
+            Occurance = occurance;
 
+        }
+        class Board
+        {
+            private const int Size = 6;
+            private Cells[] Grid{ get; set; }
+            private Random random;
+        }
+        public Board()
+        { Grid = new Cells[Size, Size];
+            random = new Random;
+            InitializeBoard();
+        }
+         private void InitializeBoard ()
+        {
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = 0; j < sizeof; j++)
+                {
+                    Grid[i, j] = new Cells("-");
+                } 
+        }
+
+
+        }
+    }
 
 
 }
