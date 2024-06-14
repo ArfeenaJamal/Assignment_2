@@ -71,28 +71,30 @@ class Player
             Grid[Size-1,Size-1].Occupant= "p2";
             for (int i = 0; i < 6; i++)
             {
-                int x = random.Next(0, size);
-                int y = random.Next(0, size);
+                int x = random.Next(0, Size);
+                int y = random.Next(0, Size);
                 if (Grid[x, y].Occupant == "-")
                 { 
                     Grid[x, y].Occupant = "G";
                 }
             }
             for (int i=0;i<6;i++)
-            { int x = Random.Next(0, size);
-                int y = Random.Next(0, size);
-                if (Grid[x,y]Occurance=="-")
-                        { Grid[x, Y].Occupant = "0";
+            {  
+                int x = random.Next(0,size);
+                int y = random.Next(0,size);
+                if (Grid[x,y].Occupant=="-")
+                        { 
+                    Grid[x,Y].Occupant == "0";
             }
             }
             }
-    public void display()
+    public void Display()
     {
-        for(int i = 0;i<size ; i++)
+        for(int i = 0;i<Size ; i++)
         {
-            for (int j = 0; j < size; j++)
+            for (int j = 0; j < Size; j++)
             {
-                Console.WriteLine(Grid[i, j].Occurance + "");
+                Console.WriteLine(Grid[i, j].Occupant + "");
 
             }
             Console.WriteLine(); 
@@ -103,23 +105,23 @@ class Player
 
         
     }
-    public bool Isvalidmove (Player,player char direction)
-       { int new X= Player.position.X;
-        int new y= Player.position.y;
+    public bool Isvalidmove (Player player char direction)
+       { 
+            int new X= player.Position.X;
+            int new Y= player.Position.Y;
     }
     switch(direction)
-        {case 'U':
-        new Y--;
-                    case 'U':
+        { 
+                case 'U':
                 newY--;
                 break;
-            case'D':
-                newy++;
+                case'D':
+                newY++;
                 break;
-            case'L':
+                case'L':
                 newX--;
                 break;
-            case'R':
+                case'R':
                 newX++;
                 break;
         }
@@ -130,7 +132,9 @@ class Player
   }
 
 if(Grid[newY,newX].Occupant=="0')
-    { return false; }
+    { 
+    return false;
+}
 return true;
 
     }
@@ -148,15 +152,15 @@ return true;
 class Game
 { 
     private Board Board { get; set; }
-    private PLayer Player1 { get; set; }
+    private Player Player1 { get; set; }
     private Player Player2 { get;set; }
     private Player CurrentTurn { get;set; }
-    private int TotalTurns { get; set; }private int TotalTurn { get; set; }
+    private int TotalTurn { get; set; }
 
     public Game()
     {
         Board = new Board();
-        Player1 = new PLayer("P1", new Position(0, 0));
+        Player1 = new Player("P1", new Position(0, 0));
         Player2 = new Player("p2", new Position(5, 5));
         CurrentTurn = Player1;
         TotalTurns = 0;
@@ -225,6 +229,7 @@ class Game
         }
     }
 }
+
 
 class Program
 {
