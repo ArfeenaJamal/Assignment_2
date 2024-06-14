@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Drawing;
-using System.Numerics;
-using System.Runtime.CompilerServices;
 class Place
 {
     int X{get;set; }
@@ -203,11 +200,35 @@ class Game
         }
     }
 
- 
+    private bool IsGameover()
+    {
+        return TotalTurns >= 30;
+    }
 
+    private void AnnounceWinner()
+    {
+        Console.WriteLine("Game Over!");
+        if (Player1.GemCount < Player2.GemCount)
+        {
+            Console.WriteLine("{Player1 wins!");
+        }
+        else if (Player1.GemCount < Player2.GemCount)
+        {
+            Console.WriteLine("Player 2 wins!");
+        }
+        else
+        {
+            Console.WriteLine("It's a tie!");
+        }
+    }
+}
 
-
-
-
+class Program
+{
+    static void Main(string[] args)
+    {
+        Game game = new Game();
+        game.start();
+    }
 }
   
